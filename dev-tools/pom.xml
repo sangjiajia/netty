@@ -30,7 +30,9 @@
   <name>Netty/Dev-Tools</name>
 
   <build>
-    <plugins>
+    
+    <pluginManagement>
+    	    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
@@ -49,5 +51,6 @@
         </configuration>
       </plugin>
     </plugins>
+    </pluginManagement>
   </build>
 </project>

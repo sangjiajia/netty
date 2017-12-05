@@ -216,26 +216,29 @@
   </dependencies>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.ops4j.pax.exam</groupId>
-        <artifactId>maven-paxexam-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-config</id>
-            <goals>
-              <goal>generate-depends-file</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <skip>${skipOsgiTestsuite}</skip>
-        </configuration>
-      </plugin>
-    </plugins>
+    
+    <pluginManagement>
+        <plugins>
+	      <plugin>
+	        <groupId>org.ops4j.pax.exam</groupId>
+	        <artifactId>maven-paxexam-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <id>generate-config</id>
+	            <goals>
+	              <goal>generate-depends-file</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      <plugin>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <configuration>
+	          <skip>${skipOsgiTestsuite}</skip>
+	        </configuration>
+	      </plugin>
+    	</plugins>
+    </pluginManagement>
   </build>
 </project>
 

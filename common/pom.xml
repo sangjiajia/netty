@@ -18,7 +18,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
+  <parent> 
     <groupId>io.netty</groupId>
     <artifactId>netty-parent</artifactId>
     <version>4.1.18.Final-SNAPSHOT</version>
@@ -137,7 +137,35 @@
         </executions>
       </plugin>
 
-      <!-- Generate the primitive collections from the template files. -->
+    
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.5.4</version>
+        <executions>
+          <execution>
+            <id>generate-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <instructions>
+                <!-- NativeLibraryLoader can be used to manually load native libraries from other bundles that this bundle does not depend on,
+                hence use DynamicImport-Package instruction to ensure the loading is successful -->
+                <DynamicImport-Package>*</DynamicImport-Package>
+                <!-- JCTools is shaded -->
+                <Import-Package>!org.jctools.*;sun.misc;resolution:=optional;*</Import-Package>
+              </instructions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    
+    <pluginManagement>
+    	<plugins>
+    		  <!-- Generate the primitive collections from the template files. -->
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>groovy-maven-plugin</artifactId>
@@ -167,29 +195,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.5.4</version>
-        <executions>
-          <execution>
-            <id>generate-manifest</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>manifest</goal>
-            </goals>
-            <configuration>
-              <instructions>
-                <!-- NativeLibraryLoader can be used to manually load native libraries from other bundles that this bundle does not depend on,
-                hence use DynamicImport-Package instruction to ensure the loading is successful -->
-                <DynamicImport-Package>*</DynamicImport-Package>
-                <!-- JCTools is shaded -->
-                <Import-Package>!org.jctools.*;sun.misc;resolution:=optional;*</Import-Package>
-              </instructions>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+    	</plugins>
+    </pluginManagement>
   </build>
 </project>

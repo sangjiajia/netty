@@ -21,7 +21,7 @@
     <groupId>io.netty</groupId>
     <artifactId>netty-parent</artifactId>
     <version>4.1.18.Final-SNAPSHOT</version>
-  </parent>
+  </parent> 
 
   <artifactId>netty-buffer</artifactId>
   <packaging>jar</packaging>
